@@ -1,3 +1,4 @@
+$(document).ready(function(event){
 var mainplayground =$('.mainplayground');
 var mainBody =$('.mainBody');
 var form =$('form');
@@ -33,7 +34,8 @@ var borderNoneAreaRed=[32,33,47,48]
 var borderNoneAreaGreen=[41,42,56,57];
 var borderNoneAreaYellow=[176,177,191,192];
 var borderNoneAreaBlue=[167,168,182,183];
-var redMoveArea=[91,92,93,94,95,81,66,51,36,21,6,7,8,23,38,53,68,83,99,100,101,102,103,104,119,134,133,132,131,130,129,143,158,173,188,203,218,217,216,201,186,171,156,141,125,124,123,122,121,120,105,106,107,108,109,110,111]
+var
+ redMoveArea=[91,92,93,94,95,81,66,51,36,21,6,7,8,23,38,53,68,83,99,100,101,102,103,104,119,134,133,132,131,130,129,143,158,173,188,203,218,217,216,201,186,171,156,141,125,124,123,122,121,120,105,106,107,108,109,110,111]
 var pointerRed = redMoveArea[0];
 var countRed=0;
 
@@ -109,14 +111,6 @@ mainplayground[0].children[111].style.content= "url('Images/home.ico')";
 mainplayground[0].children[97].style.content= "url('Images/home.ico')";
 mainplayground[0].children[127].style.content= "url('Images/home.ico')";
 mainplayground[0].children[113].style.content= "url('Images/home.ico')";
-$('form').on('submit', function (event) {
-  event.preventDefault();
-  console.log($('.player1')[0].value);
-  redButton.html($('.player1')[0].value);
-  greenButton.html($('.player2')[0].value)
-  yellowButton.html($('.player3')[0].value);
-  blueButton.html($('.player4')[0].value)
-});
 playingArea();
 redArea();
 greenArea();
@@ -174,6 +168,7 @@ function redPlay(){
     // result.html('You Rolled:'+countr);
     insideRedPlay();
   }
+  return red;
 }
 function greenPlay(){
   if(green===true){
@@ -528,4 +523,17 @@ function timer(){
   setTimeout(function(){
     result.html('');
   }, 1500);
+}
+//getting Data from localStorage
+redButton.html(localStorage.getItem('redPlayer'));
+greenButton.html(localStorage.getItem('greenPlayer'));
+yellowButton.html(localStorage.getItem('yellowPlayer'));
+blueButton.html(localStorage.getItem('bluePlayer'));
+//module exports
+});
+var getObjectValues = function(object){
+  return Object.values(object);
+}
+module.exports = {
+  getObjectValues: getObjectValues
 }
