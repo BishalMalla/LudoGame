@@ -1,0 +1,68 @@
+.mainplayground{
+  height:555px;
+  width:555px;
+}
+.mainBody{
+  /*margin-left: 500px;*/
+}
+.red,.yellow,.green,.blue{
+  height: 40px;
+  width: 80px;
+  border: none;
+  border-radius: 40%;
+}
+.red{
+  background-color: #ff4242;
+}
+.green{
+  background: #35f387;
+}
+.blue{
+  background: #8b7fff;
+}
+.yellow{
+  background: #dfec5e;
+}
+.buttonGreen{
+  margin-left: 50px;
+}
+.buttonBlue{
+}
+.buttonYellow{
+  margin-left:390px;
+}
+.container{
+  display: flex;
+}
+.form{
+  margin-top: 30px;
+}
+input.form-control{
+  width: 300px;
+  border: none;
+}
+.result{
+  width:335px;
+  font-weight: 600;
+  border:none;
+  outline: none;
+}
+.test1{
+  height: 60px;
+  width: 60px;
+}
+.test{
+  border: 1px solid red;
+  height: 30px;
+  width: 30px;
+  float: left;
+    background: linear-gradient(45deg, red 50%, green 50%), linear-gradient(135deg, red 50%, blue 50%), linear-gradient(135deg, green 50%, yellow 50%) , linear-gradient(225deg, yellow 50%, blue 50%);
+    background-size: 50% 50%;
+    background-position: 0% 0%, 0% 100%, 100% 0%, 100% 100%;
+    background-repeat: no-repeat;
+}
+.main.body{
+  background-image:url("https://previews.123rf.com/images/chrisdorney/chrisdorney1211/chrisdorney121100088/16632749-Board-game-Pieces-and-Dice-over-a-plain-white-background-Stock-Photo.jpg");
+  background-repeat: no-repeat;
+
+}
