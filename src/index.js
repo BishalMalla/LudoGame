@@ -1,3 +1,6 @@
+function status(red){
+  return true;
+}
 $(document).ready(function(event){
   var mainplayground =$('.mainplayground');
   var mainBody =$('.mainBody');

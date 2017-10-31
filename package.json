@@ -1,0 +1,23 @@
+{
+  "name": "ludogame",
+  "version": "1.0.0",
+  "description": "Game of ludo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BishalMalla/LudoGame.git"
+  },
+  "author": "Bishal Malla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BishalMalla/LudoGame/issues"
+  },
+  "homepage": "https://github.com/BishalMalla/LudoGame#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  }
+}
