@@ -1,5 +1,18 @@
-function status(red){
-  return true;
+function calcNumber(randomdiceImg, randomDefault = 0){
+  let randomIndex = randomDefault || Math.floor(Math.random()*randomdiceImg.length);
+  let itemVal = randomdiceImg[randomIndex];
+  let itemNum = (randomdiceImg.indexOf(itemVal))+1;
+  return {itemVal, itemNum};
+}
+function greenStatus(red,green,yellow,blue){
+  red=false;
+  green=true;
+  yellow=false;
+  blue=false;
+  return{red,green,yellow,blue};
+}
+function itemInLocalStorage(){
+    return localStorage.length
 }
 $(document).ready(function(event){
   var mainplayground =$('.mainplayground');
@@ -194,6 +207,7 @@ $(document).ready(function(event){
   })
   greenButton.click(function(event){
     event.preventDefault();
+    console.log(green);
     greenPlay();
   })
   yellowButton.click(function(event){
@@ -211,7 +225,7 @@ $(document).ready(function(event){
       mainplayground[0].children[blueMoveArea[countBlue]].style.content = "url('')";
     }
     if(countb !==6){
-      countbb=randomImgWithValue();
+      countbb=randomImg(".diceImg");
       countb=Number(countbb.id);
       setTimeout(function(){
         countbb.src="";
@@ -223,10 +237,10 @@ $(document).ready(function(event){
       }
     }
     if(countb===6){
-      var countBB = randomImageInside()
+      var countBB = randomImg(".diceInsideImg")
       countB = Number(countBB.id);
     }
-    if(countb===6 && countBlue<56){
+    if(countb===6 && countBlue<53){
       countBlue+= countB;
       positionb = blueMoveArea[countBlue];
       if(intoBlue>0){
@@ -243,7 +257,7 @@ $(document).ready(function(event){
       blue = false;
       countb=6;
       l++;
-      if(countBlue<56){
+      if(countBlue<53){
         mainplayground[0].children[blueMoveArea[countBlue]].style.content = "url('Images/bluetower.png')";
         mainplayground[0].children[borderNoneAreaBlue[2]].style.content = "url('')";
         if(positionb===positionr){
@@ -274,11 +288,11 @@ $(document).ready(function(event){
           countBB.src="";
         }, 1500);
       }
-      if(countBlue>56){
+      if(countBlue>53){
         countBlue = countBlue - countB;
         mainplayground[0].children[blueMoveArea[countBlue]].style.content = "url('Images/bluetower.png')";
       }
-      if(countBlue===56){
+      if(countBlue===53){
         result.html('Blue Won')
         countb=0;
         countB=0;
@@ -300,7 +314,7 @@ $(document).ready(function(event){
       mainplayground[0].children[redMoveArea[countRed]].style.content = "url('')";
     }
     if(countr!==6){
-        var countrr=randomImgWithValue();
+        var countrr=randomImg('.diceImg');
         countr=Number(countrr.id);
         setTimeout(function(){
           countrr.src="";
@@ -312,10 +326,10 @@ $(document).ready(function(event){
        }
     }
     if(countr===6){
-      var countRR = randomImageInside()
+      var countRR = randomImg('.diceInsideImg')
       countR = Number(countRR.id);
     }
-      if(countr==6 && countRed<56){
+      if(countr==6 && countRed<53){
         mainplayground[0].children[borderNoneAreaRed[2]].style.content = "url('')";
         countRed+=countR
         positionr =redMoveArea[countRed];
@@ -333,7 +347,7 @@ $(document).ready(function(event){
         blue = false;
         countr = 6;
         i++;
-        if(countRed<56){
+        if(countRed<53){
           mainplayground[0].children[redMoveArea[countRed]].style.content = "url('Images/redtower.png')";
           if(positionr===positionb){
             countb=0;
@@ -364,10 +378,10 @@ $(document).ready(function(event){
           }, 1500);
 
         }
-        if(countRed>56){
+        if(countRed>53){
           countRed=countRed-countR;
           mainplayground[0].children[redMoveArea[countRed]].style.content = "url('Images/redtower.png')";
-        }if(countRed===56){
+        }if(countRed===53){
           result.html('Red win');
           countr=0;
           countR=0;
@@ -376,10 +390,13 @@ $(document).ready(function(event){
           iRed=1;
         }
       }else{
-        red = false;
-        green = true;
+        var a=greenStatus(red,green,yellow,blue);
+        console.log(a);
+        red=false;
+        // green=true;
         yellow = false;
         blue = false;
+        green = Object.values(a)[1];
       }
   }
   function insideGreenPlay(){
@@ -389,7 +406,7 @@ $(document).ready(function(event){
       mainplayground[0].children[greenMoveArea[countGreen]].style.content ="url('')";
     }
     if(countg!==6){
-      var countgg=randomImgWithValue();
+      var countgg=randomImg('.diceImg');
       countg=Number(countgg.id);
       setTimeout(function(){
         countgg.src="";
@@ -401,10 +418,10 @@ $(document).ready(function(event){
       }
     }
     if(countg===6){
-      var countGG = randomImageInside()
+      var countGG = randomImg('.diceInsideImg')
       countG = Number(countGG.id);
     }
-      if(countg==6 && countGreen<56){
+      if(countg==6 && countGreen<53){
         countGreen += countG;
         positiong = greenMoveArea[countGreen]
         if(intoGreen>0){
@@ -421,7 +438,7 @@ $(document).ready(function(event){
         blue = false;
         countg = 6;
         j++;
-        if(countGreen<56){
+        if(countGreen<53){
           mainplayground[0].children[greenMoveArea[countGreen]].style.content ="url('Images/greentower.png')";
           mainplayground[0].children[borderNoneAreaGreen[2]].style.content = "url('')";
           if(positiong===positionr){
@@ -449,10 +466,10 @@ $(document).ready(function(event){
             mainplayground[0].children[borderNoneAreaYellow[2]].style.content = "url('Images/yellowtower.png')";
           }
         }
-        if(countGreen>56){
+        if(countGreen>53){
           countGreen=countGreen-countG;
           mainplayground[0].children[greenMoveArea[countGreen]].style.content = "url('Images/greentower.png')";
-        }if(countGreen===56){
+        }if(countGreen===53){
           result.html('Green win');
           countg=0;
           countG=0;
@@ -477,7 +494,7 @@ $(document).ready(function(event){
       mainplayground[0].children[yellowMoveArea[countYellow]].style.content ="url('')";
     }
     if(county!==6){
-      var countyy=randomImgWithValue();
+      var countyy=randomImg('.diceImg');
       county=Number(countyy.id);
       setTimeout(function(){
         countyy.src="";
@@ -489,10 +506,10 @@ $(document).ready(function(event){
       }
     }
     if(county===6){
-      var countYY = randomImageInside()
+      var countYY = randomImg('.diceInsideImg')
       countY = Number(countYY.id);
     }
-      if(county==6 && countYellow<56){
+      if(county==6 && countYellow<53){
         countYellow+= countY;
         positiony = yellowMoveArea[countYellow];
         if(intoYellow>0){
@@ -509,7 +526,7 @@ $(document).ready(function(event){
         blue = true;
         county=6;
         k++;
-        if(countYellow<56){
+        if(countYellow<53){
           mainplayground[0].children[yellowMoveArea[countYellow]].style.content = "url('Images/yellowtower.png')";
           mainplayground[0].children[borderNoneAreaYellow[2]].style.content = "url('')";
           if(positiony===positionr){
@@ -540,11 +557,11 @@ $(document).ready(function(event){
             countYY.src="";
           }, 1500);
         }
-        if(countYellow>56){
+        if(countYellow>53){
           countYellow = countYellow - countY;
           mainplayground[0].children[yellowMoveArea[countYellow]].style.content = "url('Images/yellowtower.png')";
         }
-        if(countYellow===56){
+        if(countYellow===53){
           result.html('yellow win');
           county=0;
           countY=0;
@@ -568,7 +585,8 @@ $(document).ready(function(event){
   redButton.html(localStorage.getItem('redPlayer'));
   greenButton.html(localStorage.getItem('greenPlayer'));
   yellowButton.html(localStorage.getItem('yellowPlayer'));
-  blueButton.html(localStorage.getItem('bluePlayer'));
+  // blueButton.html(localStorage.getItem('bluePlayer'));
+
   var randomdiceImg = [
     'Images/diceone.png',
     'Images/dicetwo.png',
@@ -577,20 +595,12 @@ $(document).ready(function(event){
     'Images/dicefive.png',
     'Images/dicesix.png'
   ]
-  function randomImgWithValue(){
-    var item = randomdiceImg[Math.floor(Math.random()*randomdiceImg.length)];
-    var img = $('.diceImg')
-    var number = (randomdiceImg.indexOf(item))+1;
-    img[0].src=item;
-    img[0].id=number;
+
+  function randomImg(selector){
+    var {itemVal, itemNum} = calcNumber(randomdiceImg);
+    var img = $(selector)
+    img[0].src=itemVal;
+    img[0].id=itemNum;
     return(img[0]);
   }
-  function randomImageInside(){
-  var itemInside = randomdiceImg[Math.floor(Math.random()*randomdiceImg.length)];
-  var imgInside = $('.diceInsideImg')
-  var numberInside = (randomdiceImg.indexOf(itemInside))+1;
-  imgInside[0].src=itemInside;
-  imgInside[0].id=numberInside;
-  return(imgInside[0]);
-}
 });
